@@ -14,11 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('welcome');
 });
 
 
-Route::get('get_all', [httpController::class,"getAllData"])->name('getAllData');
-Route::get('get_one/{id}', [httpController::class,"getOne_Data"])->name('getOne_Data')->where("id",'[0-9]+');
-Route::get('get_one', [httpController::class,"update_post"])->name('update_post');
+
