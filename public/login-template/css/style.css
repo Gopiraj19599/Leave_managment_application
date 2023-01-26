@@ -201,12 +201,11 @@ body {
 }
 
 .log-det img {
-  display: flex;
-  align-items: center;
-  width: 131px;
-  height: 50px;
+    display: flex;
+    align-items: center;
+    width: 178px;
+    height: 39px;
 }
-
 .log-det h2 {
   margin-top: 10px;
   width: 100%;
