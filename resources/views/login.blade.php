@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
    <head>
-      <title>DreamSpace Leave Management</title>
+      <title>Tealorca Leave Management</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
@@ -44,13 +44,16 @@
                             </div>
                             <h2 class="mb-3">Leave Management System <br></h2>
                             <div class="text-box-cont mt-3">
-                            <form action="handle-login" method="POST" class="login-form">
+
+
+
+                            <form action="{{ route('handle-login') }}" method="POST" class="login-form">
                               {{ csrf_field() }}
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                     </div>
-                                    <input type="text" name="username" class="form-control" placeholder="Username" required>
+                                    <input type="text" name="username_email" class="form-control" placeholder="Username" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
