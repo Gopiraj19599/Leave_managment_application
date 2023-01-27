@@ -48,7 +48,7 @@ Route::get('/edit-staff/{id}',[StaffManagementController::class,'edit'])->name('
 
 Route::post('updated-staff',[StaffManagementController::class,"update"])->name('updated-staff');
 
-
+Route::get('delete-staff/{id}', [StaffManagementController::class,"delete"])->name('delete-staff');
 
 
 

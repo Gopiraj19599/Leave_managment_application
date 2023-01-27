@@ -55,6 +55,9 @@ class StaffManagementController extends Controller
      }
 
 
+
+
+
      public function update(Request $request)
      {
         $validated = $request->validate([
@@ -69,11 +72,8 @@ class StaffManagementController extends Controller
         ]);
 
         // dd($request);
-
         $updated = StaffManagement::find($request->id);
-
         // dd($updated);
-
         $updated->staff_id =$request->staff_id;
         $updated->first_name =$request->first_name;
         $updated->last_name =$request->last_name;
@@ -81,22 +81,21 @@ class StaffManagementController extends Controller
         $updated->email =$request->email;
         $updated->phone_number =$request->phone_number;
         $updated->position =$request->position;
-
         $updated->save();
-
-
-        return redirect()->route('view-staff-management');
-
-
-
-
-
-
-
-
+        return redirect()->route('view-staff-management')->with('message','Staff successfully Updated');
 
         //  return redirect()->route('companies.index')->with('success','Company Has Been updated successfully');
      }
 
+     public function delete($id){
+
+        $delete_staff = StaffManagement::find($id);
+
+        $delete_staff->delete();
+
+        return redirect()->route('view-staff-management')->with('message','Staff deleted successfully');
+
+
+     }
 
 }
