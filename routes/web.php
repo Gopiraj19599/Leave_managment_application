@@ -12,7 +12,7 @@ use App\Http\Controllers\AdminController\AdminHomePageController;
 use App\Http\Controllers\StaffController\staffHomePageController;
 use App\Http\Controllers\AdminController\StaffManagementController;
 use App\Http\Controllers\AdminController\AdminLeaveManageController;
-
+use App\Models\StaffManagement;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +37,17 @@ Route::get('/view-home-page',[AdminHomePageController::class,"view"])->name('vie
 
 
 
+
 //  ******************* admin  Staff management   ******************
 
 Route::get('/view-staff-management',[StaffManagementController::class,"index"])->name('view-staff-management');
+
 Route::post('admin-create-staff',[StaffManagementController::class,"Store"])->name('admin-create-staff');
+
+Route::get('/edit-staff/{id}',[StaffManagementController::class,'edit'])->name('edit-staff');
+
+Route::post('updated-staff',[StaffManagementController::class,"update"])->name('updated-staff');
+
 
 
 

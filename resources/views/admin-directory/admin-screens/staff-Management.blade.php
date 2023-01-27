@@ -1,3 +1,4 @@
+{{-- {{ dd($staff_data[0]) }} --}}
 @extends('admin-directory.admin-templete')
 
 @section('dashboard-admin-content')
@@ -122,31 +123,24 @@
                 </tr>
               </thead>
               <tbody>
-                {{-- @foreach ($staff_data as $key => $data)
+                @foreach ($staff_data as $key => $data)
 
                     <tr>
                         <th scope="row">{{ $key + 1 }}</th>
                         <td>{{$data->staff_id}}</td>
-                        <td>{{$data->firstname}}</td>
-                        <td>{{$data->lastname}}</td>
-                        <td>{{$data->dob}}</td>
+                        <td>{{$data->first_name}}</td>
+                        <td>{{$data->last_name}}</td>
+                        <td>{{$data->date_of_birth}}</td>
                         <td>{{$data->email}}</td>
                         <td>{{$data->phone_number}}</td>
                         <td>{{$data->position}}</td>
-                        <td><a class="btn btn-primary" href="/view-staff-management-edit/{{$data->auto_id}}">Edit</a> <a class="btn btn-danger confirmation" href="/delete-staff-data/{{$data->auto_id}}">Delete</a></td>
+                        <td><a class="btn btn-primary" href="/edit-staff/{{$data->id}}">Edit</a> <a class="btn btn-danger confirmation" href="#">Delete</a></td>
+                        {{-- <td><a class="btn btn-primary" href="/view-staff-management-edit/{{$data->auto_id}}">Edit</a> <a class="btn btn-danger confirmation" href="/delete-staff-data/{{$data->auto_id}}">Delete</a></td> --}}
+
                     </tr>
 
-                @endforeach --}}
-                <tr>
-                    <td>1</td>
-                    <th >12345</th>
-                    <td>gopi</td>
-                    <td>raj</td>
-                    <td>1999-05-19	</td>
-                    <td>gopiraj.tealorca@gmail.com	</td>
-                    <td>8778582299</td>
-                    <td>junior software engineer	</td>
-                    <td><a class="btn btn-primary" >Edit</a> <a class="btn btn-danger confirmation">Delete</a></td>
+                @endforeach
+
 
 
                 </tr>
