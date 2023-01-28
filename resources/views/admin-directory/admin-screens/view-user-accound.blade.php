@@ -1,3 +1,6 @@
+{{-- {{ dd($staff_data) }} --}}
+{{-- {{ dd($user_list[0]) }} --}}
+
 @extends('admin-directory.admin-templete')
 
 @section('dashboard-admin-content')
@@ -53,7 +56,7 @@
       <h3 class="panel-title" style="text-align:center;">Create User Accounts</h3>
       <br>
 
-      <form action="/insert-user-accounts" method="POST">
+      <form action="{{ route('create-user-account') }}" method="POST">
 
         {{ csrf_field() }}
 
@@ -63,27 +66,30 @@
             <select class="form-control" name = "staff_id" id="staff_id" aria-label="Default select example">
 
               <option selected disabled>Select a staff</option>
-              {{-- @foreach ($staff_data as $key => $data)
-                <option value="{{$data->staff_id}}">{{$data->staff_id}} ({{$data->firstname}} {{$data->lastname}})</option>
-              @endforeach --}}
+              @foreach ($staff_data as $key => $data)
+                <option value="{{ $data->id }},{{$data->email}}">{{$data->staff_id}} ({{ $data->email }})</option>
+              @endforeach
 
             </select>
           </div>
         </div>
 
         <div class="form-group row">
-          <label for="username" class="col-sm-2 col-form-label">Username</label>
-          <div class="col-sm-8">
-            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+            <label for="user_name" class="col-sm-2 col-form-label">User Name</label>
+            <div class="col-sm-8">
+              <input type="tex" class="form-control" id="user_name" name="user_name" placeholder="User Name" required>
+            </div>
           </div>
-        </div>
 
         <div class="form-group row">
           <label for="password" class="col-sm-2 col-form-label">Password</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="password" name="password" placeholder="Enter password" required>
+            <input type="tex" class="form-control" id="password" name="password" placeholder="Enter password" required>
           </div>
         </div>
+
+
+
 
         <div class="form-group row">
           <label style="visibility:hidden;" for="button" class="col-sm-2 col-form-label">button</label>
@@ -105,24 +111,26 @@
           <table class="table table-bordered table-hover table-dark">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Staff ID</th>
+                  <th scope="col">S ID</th>
                   <th scope="col">Username</th>
+                  <th scope="col">Email</th>
                   <th scope="col">Password</th>
+                  {{-- <th scope="col">Accound type</th> --}}
                   <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {{-- @foreach ($staff_user_data as $key => $data)
+                @foreach ($user_list as $key => $data)
                     <tr>
                         <th scope="row">{{ $key + 1 }}</th>
-                        <td>{{$data->staff_id}}</td>
-                        <td>{{$data->username}}</td>
+                        <td>{{$data->user_name}}</td>
+                        <td>{{$data->email}}</td>
                         <td>{{$data->password}}</td>
-                        <td><a class="btn btn-primary" href="/view-edit-user-account/{{$data->auto_id}}">Edit</a> <a class="btn btn-danger confirmation" href="/delete-user-account/{{$data->auto_id}}">Delete</a></td>
+                        {{-- <td>{{$data->account_type}}</td> --}}
+                        <td><a class="btn btn-primary" href="/edit-user-account/{{$data->id}}">Edit</a> <a class="btn btn-danger confirmation" href="/delete-user-account/{{$data->id}}">Delete</a></td>
                     </tr>
 
-                @endforeach --}}
+                @endforeach
 
               </tbody>
           </table>

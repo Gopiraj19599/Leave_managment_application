@@ -27,45 +27,64 @@ use App\Models\StaffManagement;
 
 //    *******************   Login  ************************
 
-Route::get('/',[LoginController::class,"Login"])->name('login');
-Route::post('post-login',[LoginController::class,"post"])->name('handle-login');
+Route::get('/', [LoginController::class,"Login"])->name('login');
+Route::post('post-login', [LoginController::class,"post"])->name('handle-login');
 
 
 // *****************   admin Home Page    ********************
 
-Route::get('/view-home-page',[AdminHomePageController::class,"view"])->name('view-home');
+Route::get('/view-home-page', [AdminHomePageController::class,"view"])->name('view-home');
 
 
 
 
 //  ******************* admin  Staff management   ******************
 
-Route::get('/view-staff-management',[StaffManagementController::class,"index"])->name('view-staff-management');
 
-Route::post('admin-create-staff',[StaffManagementController::class,"Store"])->name('admin-create-staff');
 
-Route::get('/edit-staff/{id}',[StaffManagementController::class,'edit'])->name('edit-staff');
+Route::get('/view-staff-management', [StaffManagementController::class,"index"])->name('view-staff-management');
 
-Route::post('updated-staff',[StaffManagementController::class,"update"])->name('updated-staff');
+Route::post('admin-create-staff', [StaffManagementController::class,"Store"])->name('admin-create-staff');
+
+Route::get('/edit-staff/{id}', [StaffManagementController::class,'edit'])->name('edit-staff');
+
+Route::post('updated-staff', [StaffManagementController::class,"update"])->name('updated-staff');
 
 Route::get('delete-staff/{id}', [StaffManagementController::class,"delete"])->name('delete-staff');
 
 
 
+
+
+
+
 //   ****************   admin Leave management  ********************
 
-Route::get('/view-leave-history',[AdminLeaveManageController::class,"view"])->name('view-leave-history');
+Route::get('/view-leave-history', [AdminLeaveManageController::class,"view"])->name('view-leave-history');
 
 
-//  ****************   Admin User Accounts       ********************
+//  ****************    User Accounts   on admin log     ********************
 
-Route::get('/view-user-accounts',[UserAccountsController::class,"view"])->name('view-user-accounts');
+Route::get('/view-user-accounts', [UserAccountsController::class,"index"])->name('view-user-accounts');
+
+Route::post('create-user-account', [UserAccountsController::class,"Store"])->name('create-user-account');
+
+Route::get('/edit-user-account/{id}', [UserAccountsController::class,'edit'])->name('edit-user-account');
+
+Route::post('updated-user-account', [UserAccountsController::class,"update"])->name('updated-user-account');
+
+Route::get('/delete-user-account/{id}', [UserAccountsController::class,"delete"])->name('delete-user-account');
+
 
 
 
 //  ****************  admin settings  ******************
 
-Route::get('/view-settings',[AdminSettingController::class,"view"])->name('view-settings');
+Route::get('/view-settings', [AdminSettingController::class,"view"])->name('view-settings');
+
+
+
+
 
 
 
@@ -75,13 +94,14 @@ Route::get('/view-settings',[AdminSettingController::class,"view"])->name('view-
 
 //   ******************  staff home page *****************
 
-Route::get("/Staff-view-home",[staffHomePageController::class,"view"])->name('Staff-view-home');
-Route::post('handle-send-mail',[EmailController::class,'post'])->name('handle-send-mail');
+Route::get("/Staff-view-home", [staffHomePageController::class,"view"])->name('Staff-view-home');
+Route::post('handle-send-mail', [EmailController::class,'post'])->name('handle-send-mail');
 
 
 
 //    ********  staff    setting  *****************
-Route::get('/staff-view-settings',[SettingController::class,'view'])->name('staff-view-settings');
+
+Route::get('/staff-view-settings', [SettingController::class,'view'])->name('staff-view-settings');
 
 
 
@@ -92,7 +112,6 @@ Route::get('/staff-view-settings',[SettingController::class,'view'])->name('staf
 
 
 Route::get('/send-mail', function () {
-
     $details = [
         'title' => 'Request for leave',
         'body' => 'n publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.'
@@ -106,8 +125,3 @@ Route::get('/send-mail', function () {
 
     dd("fucking");
 });
-
-
-
-
-
