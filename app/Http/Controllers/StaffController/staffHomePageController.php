@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\StaffController;
 
 use App\Http\Controllers\Controller;
+use App\Models\LeaveData;
 use App\Models\UserAccounts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -36,6 +37,22 @@ class staffHomePageController extends Controller
             'Date_of_leave_to' => 'required',
         ]);
 
+        $staff_id = $request->session()->all();
+        // dd($staff_id['Staff_data']);
+        $User_data =UserAccounts::find($staff_id['Staff_data']);
+        $mail =new LeaveData;
+
+        $mail->type_of_leave  =$request->Leave_type;
+        $mail->description =$request->Description;
+        $mail->second_code = 'first_code';
+        $mail->first_code = 'second_code';
+        $mail->third_code = 'third_code';
+        $mail->status_one = 'pending';
+        $mail->status_two = 'pending';
+        $mail->status_three = 'pending';
+
+        $User_data->create_leave()->save($mail);
+
 
         $details= array(
             'To_email' => $request->To_email,
@@ -46,15 +63,20 @@ class staffHomePageController extends Controller
             'Date_of_leave_from' => $request->Date_of_leave_from,
             'Date_of_leave_to' => $request->Date_of_leave_to,
           );
-        //   dd('hi');
-        //  dd($details['To_email']);
+
+
+
 
         Mail::to($details['To_email'])
                 ->cc($details['Bcc_mail'])
                 ->send(new \App\Mail\MyTestMail($details));
         return redirect()->route('Staff-view-home')->with('message','Mail send successfully');
 
-        // return view('demo',compact('details'));
+
+
+
+
+
 
 
     }

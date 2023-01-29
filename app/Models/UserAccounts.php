@@ -11,9 +11,14 @@ class UserAccounts extends Model
 
     protected $fillable = ['user_id','user_name','email','password','account_type'];
 
-
     public function staff()
     {
         return $this->belongsTo(StaffManagement::class);
     }
+
+    public function create_leave()
+    {
+        return $this->hasMany(LeaveData::class,'staff_id','id');
+    }
+
 }
