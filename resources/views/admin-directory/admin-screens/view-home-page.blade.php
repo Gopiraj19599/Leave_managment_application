@@ -3,6 +3,7 @@
 @section('dashboard-admin-content')
 
 
+
 @if($errors->any())
   @foreach ($errors->all() as $error)
       <div id="errorBox" style="text-align:center;margin-top:20px;" class="alert alert-danger col-md-12 alert-dismissible fade show" role="alert">
@@ -26,7 +27,7 @@
 @endif
 
 
-@if(session()->has('message'))
+{{-- @if(session()->has('message'))
 
     <div id="successBox" style="text-align:center;margin-top:20px;" class="alert alert-success col-md-12 alert-dismissible fade show" role="alert">
         <strong> {{ session()->get('message') }}</strong>
@@ -45,6 +46,28 @@
         }, 1000);
 
     </script>
+
+@endif --}}
+
+@if(session()->has('message'))
+
+<div id="successBox" style="text-align:center;margin-top:20px;" class="alert alert-success col-md-12 alert-dismissible fade show" role="alert">
+    <strong> {{ session()->get('message') }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<script>
+
+    setTimeout(
+    function()
+    {
+        $("#successBox").delay(3000).fadeOut("slow");
+
+    }, 1000);
+
+</script>
 
 @endif
 
@@ -94,3 +117,4 @@
     }
 
 </script>
+

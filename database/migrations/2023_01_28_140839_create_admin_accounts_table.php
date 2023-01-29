@@ -18,6 +18,7 @@ class CreateAdminAccountsTable extends Migration
             $table->string('user_name');
             $table->string('email');
             $table->string('password');
+            $table->string('role');
             $table->timestamps();
         });
     }

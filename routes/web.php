@@ -33,7 +33,7 @@ Route::post('post-login', [LoginController::class,"post"])->name('handle-login')
 
 // *****************   admin Home Page    ********************
 
-Route::get('/view-home-page', [AdminHomePageController::class,"view"])->name('view-home');
+Route::get('/view-home', [AdminHomePageController::class,"view"])->name('view-home');
 
 
 

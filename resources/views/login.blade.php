@@ -35,6 +35,33 @@
 
           			@endforeach
           		@endif
+
+
+
+
+                  @if(session()->has('message'))
+
+                  <div id="successBox" style="text-align:center;margin-top:20px;" class="alert alert-success col-md-12 alert-dismissible fade show" role="alert">
+                      <strong> {{ session()->get('message') }}</strong>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+
+                  <script>
+
+                      setTimeout(
+                      function()
+                      {
+                          $("#successBox").delay(3000).fadeOut("slow");
+
+                      }, 1000);
+
+                  </script>
+
+              @endif
+
+
                 <div class="col-sm-10 login-box">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 log-det">
@@ -53,7 +80,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
                                     </div>
-                                    <input type="text" name="username_email" class="form-control" placeholder="Username" required>
+                                    <input type="text" name="email" class="form-control" placeholder="email" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
@@ -61,6 +88,7 @@
                                     </div>
                                     <input type="password" name="password" class="form-control" placeholder="Password" required>
                                 </div>
+
                                 <div class="form-check form-check-inline mb-3">
                                     <input class="form-check-input" type="radio" name="login_type" id="login_type_admin" value="admin">
                                     <label class="form-check-label" for="inlineRadio1">Admin Login</label>
