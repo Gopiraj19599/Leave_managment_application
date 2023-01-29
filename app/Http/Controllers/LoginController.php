@@ -30,6 +30,7 @@ class LoginController extends Controller
             $variable = UserAccounts::where('email', $email)->first();
 
             if (isset($variable->email) and $password == $variable->password) {
+                $request->session()->put('Staff_data',$variable->id);
                 return redirect()->route('Staff-view-home');
             } else {
                 return redirect()->route('login')->with('message', 'Staff email have no account, pls try proper email and password');

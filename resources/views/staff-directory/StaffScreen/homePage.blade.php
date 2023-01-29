@@ -68,9 +68,9 @@
         {{ csrf_field() }}
 
         <div class="form-group row">
-            <label for="To_mail" class="col-sm-2 col-form-label">To :</label>
+            <label for="To_email" class="col-sm-2 col-form-label">To :</label>
             <div class="col-sm-8">
-              <select class="form-control"  id="To_mail"name = "To_mail"   required>
+              <select class="form-control"  id="To_email"name = "To_email"   required>
 
                 <option selected disabled>Select a persion</option>
                 <option value="sasi@tealorca.com">sasi@tealorca.com</option>

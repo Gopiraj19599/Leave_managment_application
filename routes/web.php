@@ -28,7 +28,9 @@ use App\Models\StaffManagement;
 //    *******************   Login  ************************
 
 Route::get('/', [LoginController::class,"Login"])->name('login');
+
 Route::post('post-login', [LoginController::class,"post"])->name('handle-login');
+
 Route::get('/log_out_admin',[LoginController::class,'logout'])->name('log_out_admin');
 
 
@@ -89,6 +91,9 @@ Route::get('/view-settings', [AdminSettingController::class,"view"])->name('view
 
 
 
+
+
+
 // ============================    STAFF  ====================
 
 
@@ -96,7 +101,8 @@ Route::get('/view-settings', [AdminSettingController::class,"view"])->name('view
 //   ******************  staff home page *****************
 
 Route::get("/Staff-view-home", [staffHomePageController::class,"view"])->name('Staff-view-home');
-Route::post('handle-send-mail', [EmailController::class,'post'])->name('handle-send-mail');
+
+Route::post('handle-send-mail', [staffHomePageController::class,'post'])->name('handle-send-mail');
 
 
 
@@ -112,28 +118,19 @@ Route::get('/staff-view-settings', [SettingController::class,'view'])->name('sta
 // -------------------   send  email  with CEO PR and PM  ---------------------
 
 
-Route::get('/send-mail', function () {
-    $details = [
-        'title' => 'Request for leave',
-        'body' => 'n publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.'
-    ];
+// Route::get('/send-mail', function () {
+//     $details = [
+//         'title' => 'Request for leave',
+//         'body' => 'n publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.'
+//     ];
 
-    Mail::to('sasi@tealorca.com')
+//     Mail::to('sasi@tealorca.com')
+//     ->bcc('priyanka@gmail.com')
+//     ->send(new \App\Mail\MyTestMail($details));
 
-    ->cc("projects@tealorca.com")
-    // ->bcc($bccEmails)
-    ->send(new \App\Mail\MyTestMail($details));
-
-    dd("mail send successfully");
-});
+//     dd("mail send successfully");
+// });
 
 
 
-Route::get('gopi',function(){
-    $session = session()->all();
-
-    dd($session);
-
-
-
-});
+Route::view('fuck','demo');
