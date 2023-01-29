@@ -11,12 +11,18 @@ class AdminHomePageController extends Controller
     public function view(Request $request)
     {
         $session = session()->all();
+        if (isset($session['Admin_data'])){
 
-        // dd($session['Admin_data']);
+            $admin_data = AdminAccounts::find($session['Admin_data']);
 
-        $admin_data = AdminAccounts::find($session['Admin_data']);
-        dd($admin_data->email);
-        return view('admin-directory.admin-screens.view-home-page')->with('message',"Welcome rdtdsrtrytrtydrgsdfhdtudtugtibt7n");
+            return view('admin-directory.admin-screens.view-home-page')->with('admin_data', $admin_data);
+        }else{
+
+            return redirect('/')->with('message','You was logout pls login again');
+
+        }
+
+
 
     }
 

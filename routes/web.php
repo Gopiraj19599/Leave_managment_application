@@ -29,6 +29,7 @@ use App\Models\StaffManagement;
 
 Route::get('/', [LoginController::class,"Login"])->name('login');
 Route::post('post-login', [LoginController::class,"post"])->name('handle-login');
+Route::get('/log_out_admin',[LoginController::class,'logout'])->name('log_out_admin');
 
 
 // *****************   admin Home Page    ********************
@@ -123,5 +124,16 @@ Route::get('/send-mail', function () {
     // ->bcc($bccEmails)
     ->send(new \App\Mail\MyTestMail($details));
 
-    dd("fucking");
+    dd("mail send successfully");
+});
+
+
+
+Route::get('gopi',function(){
+    $session = session()->all();
+
+    dd($session);
+
+
+
 });

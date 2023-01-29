@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminAccounts;
 use App\Models\StaffManagement;
 use App\Models\UserAccounts;
 use Illuminate\Http\Request;
@@ -13,11 +14,22 @@ class UserAccountsController extends Controller
 {
     public function index()
     {
+        $session = session()->all();
+      if(isset($session["Admin_data"])){
+        $staff_data = StaffManagement::all();
+        $user_list =UserAccounts::all();
+        $admin_data = AdminAccounts::find($session['Admin_data']);
+        return view('admin-directory.admin-screens.view-user-accound',compact('staff_data','user_list','admin_data'));
 
-      $staff_data = StaffManagement::all();
-      $user_list =UserAccounts::all();
+      }else{
 
-      return view('admin-directory.admin-screens.view-user-accound',compact('staff_data','user_list'));
+        return redirect('/')->with('message','You was logout pls login again');
+      }
+
+
+
+
+
 
     }
 
@@ -46,11 +58,15 @@ class UserAccountsController extends Controller
 
      public function edit($id)
      {
-        $user_data =UserAccounts::find($id);
+        $session = session()->all();
+        if(isset($session["Admin_data"])){
+            $user_data =UserAccounts::find($id);
+            $admin_data = AdminAccounts::find($session['Admin_data']);
+            return view('admin-directory.admin-screens.view-user-accound-edit',compact('user_data','admin_data'));
+        }else{
+            return redirect('/')->with('message','You was logout pls login again');
+        }
 
-        // dd($user_data);
-
-        return view('admin-directory.admin-screens.view-user-accound-edit',compact('user_data'));
 
 
      }
@@ -58,15 +74,11 @@ class UserAccountsController extends Controller
      public function update(Request $request)
      {
 
-        // dd($request->id);
+
         $validated = $request->validate([
-            // 'id'    =>   'required',
-            // 'user_id' => 'required',
             'user_name' => 'required',
             'email' => 'required',
             'password' => 'required',
-
-
         ]);
 
 

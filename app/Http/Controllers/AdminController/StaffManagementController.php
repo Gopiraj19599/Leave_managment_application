@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminController;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdminAccounts;
 use App\Models\StaffManagement;
 use Illuminate\Http\Request;
 
@@ -11,15 +12,22 @@ class StaffManagementController extends Controller
 {
     public function index()
     {
+
+        $session = session()->all();
+        if(isset($session["Admin_data"])){
+
         $staff_data = StaffManagement::all();
+        $admin_data = AdminAccounts::find($session['Admin_data']);
+        return view('admin-directory.admin-screens.staff-Management',compact('staff_data','admin_data'));
 
-        // dd($staff_data);
+        }else{
 
-        return view('admin-directory.admin-screens.staff-Management',compact('staff_data'));
-        // return view('admin-directory.admin-screens.staff-Management');
+            return redirect('/')->with('message','You was logout pls login again');
+        }
+
+
 
     }
-
 
 
      public function store(Request $request){
@@ -46,15 +54,20 @@ class StaffManagementController extends Controller
 
      public function edit($id){
 
-        $staff_data =StaffManagement::find($id);
 
-        // dd($staff_data);
+        $session = session()->all();
 
-        return view('admin-directory.admin-screens.staff-Management-edit',compact('staff_data'));
+        if(isset($session["Admin_data"])){
+            $staff_data =StaffManagement::find($id);
+            $admin_data = AdminAccounts::find($session['Admin_data']);
+            return view('admin-directory.admin-screens.staff-Management-edit',compact('staff_data','admin_data'));
+
+        }else{
+
+            return redirect('/')->with('message','You was logout pls login again');
+        }
 
      }
-
-
 
 
 

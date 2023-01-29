@@ -1,3 +1,4 @@
+{{-- {{ dd($admin_data) }} --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,7 +74,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" href="{{ route('log_out_admin') }}">
                     <i class="fas fa-fw fa-power-off"></i>
                     <span>Logout</span></a>
             </li>
@@ -111,7 +112,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-3 d-none d-lg-inline" style="font-size: 18px; font-weight: bold;">Admin</span>
+                                <span class="mr-3 d-none d-lg-inline" style="font-size: 18px; font-weight: bold;">{{ $admin_data->user_name }} ({{ $admin_data->role }})</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{asset('dashboard-template')}}/img/undraw_profile.svg">
                             </a>
