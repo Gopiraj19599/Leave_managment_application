@@ -2,6 +2,7 @@
 
 return [
 
+    'table' => 'admin_accounts',
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -15,7 +16,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'admin_accounts',
     ],
 
     /*
@@ -38,7 +39,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'admin_accounts',
         ],
     ],
 
@@ -59,10 +60,16 @@ return [
     |
     */
 
+    // 'providers' => [
+    //     'users' => [
+    //         'driver' => 'eloquent',
+    //         'model' => App\Models\User::class,
+    //     ],
+
     'providers' => [
-        'users' => [
+        'admin_accounts' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\AdminAccounts::class,
         ],
 
         // 'users' => [
@@ -87,8 +94,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'admin_accounts' => [
+            'provider' => 'admin_accounts',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
@@ -107,5 +114,8 @@ return [
     */
 
     'password_timeout' => 10800,
+
+
+
 
 ];
